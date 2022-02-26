@@ -7,7 +7,8 @@ import addressesEqual from "../utils/addressesEqual";
 import { UserCircleIcon } from "@heroicons/react/solid";
 import TipButton from "../components/tip-button";
 import getKeyboardsContract from "../utils/getKeyboardsContract";
-import { toast } from "react-hot-toast"
+import { toast } from "react-hot-toast";
+import { useMetaMaskAccount } from "../components/meta-mask-account-provider";
 
 
 
