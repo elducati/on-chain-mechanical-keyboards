@@ -3,7 +3,8 @@ import Router from "next/router";
 import { useState, useEffect } from "react";
 import PrimaryButton from "../components/primary-button";
 import Keyboard from "../components/keyboard";
-import abi from "../utils/Keyboards.json"
+import abi from "../utils/Keyboards.json";
+import { useMetaMaskAccount } from "../components/meta-mask-account-provider";
 
 export default function Create() {
     const { ethereum, connectedAccount, connectAccount } = useMetaMaskAccount();
