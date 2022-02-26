@@ -14,7 +14,7 @@ export default function Create() {
     const [isPBT, setIsPBT] = useState(false)
     const [filter, setFilter] = useState('')
     const [mining, setMining] = useState(false)
-
+    const keyboardsContract = getKeyboardsContract(ethereum);
 
     const contractAddress = '0x0f76246c5CdF52A4C252e855fa0929AcE0C68BB9';
     const contractABI = abi.abi;
@@ -53,30 +53,30 @@ export default function Create() {
 
     const submitCreate = async (e) => {
         e.preventDefault();
-      
-        if (!ethereum) {
-          console.error('Ethereum object is required to create a keyboard');
-          return;
+
+        if (!keyboardsContract) {
+            console.error('KeyboardsContract object is required to create a keyboard');
+            return;
         }
-      
+
         setMining(true);
         try {
-          const provider = new ethers.providers.Web3Provider(ethereum);
-          const signer = provider.getSigner();
-          const keyboardsContract = new ethers.Contract(contractAddress, contractABI, signer);
-      
-          const createTxn = await keyboardsContract.create(keyboardKind, isPBT, filter)
-          console.log('Create transaction started...', createTxn.hash)
-      
-          await createTxn.wait();
-          console.log('Created keyboard!', createTxn.hash);
-      
-          Router.push('/');
+            const provider = new ethers.providers.Web3Provider(ethereum);
+            const signer = provider.getSigner();
+            const keyboardsContract = new ethers.Contract(contractAddress, contractABI, signer);
+
+            const createTxn = await keyboardsContract.create(keyboardKind, isPBT, filter)
+            console.log('Create transaction started...', createTxn.hash)
+
+            await createTxn.wait();
+            console.log('Created keyboard!', createTxn.hash);
+
+            Router.push('/');
         } finally {
-          setMining(false);
+            setMining(false);
         }
-      }
-      
+    }
+
 
     if (!ethereum) {
         return <p>Please install MetaMask to connect to this site</p>

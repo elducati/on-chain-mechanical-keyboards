@@ -3,14 +3,14 @@ import SecondaryButton from "./secondary-button";
 import { ethers } from "ethers";
 import abi from "../utils/Keyboards.json"
 
-export default function TipButton({ ethereum, index }) {
+export default function TipButton({ keyboardsContract, index }) {
   const contractAddress = '0x0f76246c5CdF52A4C252e855fa0929AcE0C68BB9';
   const contractABI = abi.abi;
 
   const [mining, setMining] = useState(false)
 
   const submitTip = async (e) => {
-    if (!ethereum) {
+    if (!keyboardsContract) {
       console.error('Ethereum object is required to submit a tip');
       return;
     }
