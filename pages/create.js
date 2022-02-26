@@ -12,7 +12,7 @@ export default function Create() {
     const [isPBT, setIsPBT] = useState(false)
     const [filter, setFilter] = useState('')
     const [mining, setMining] = useState(false)
-    const keyboardsContract = getKeyboardsContract(ethereum);
+    
 
     const contractAddress = '0x0f76246c5CdF52A4C252e855fa0929AcE0C68BB9';
     const contractABI = abi.abi;
